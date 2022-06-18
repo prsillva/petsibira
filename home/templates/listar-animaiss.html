@@ -1,0 +1,49 @@
+{% extends 'blog/base.html' %}
+{% block title %}Listagem de Animais{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Bem vindo ao Django blog!</h1>
+            <p class="lead">Aqui você vai encontrar os melhores posts sobre o framework.</p>
+            <p>Uma seleção especial de peludinhos que buscam um lar para chamar de seu. Não encontrou seu pet aqui ainda? Preencha o formulário de intenção que uma ONG parceria entrará em contato com você ou visite uma loja Petz e conheça outros pets disponíveis para adoção pertinho de você.</p>
+          </div>
+        </div>
+        <div class="row">
+                            {% for animais in animais %}
+                <div class="card mb-3" style="max-width: 540px;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src="https://via.placeholder.com/286x180" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ animais.NomeAnimal }}</h5>
+                        <p class="card-text">{{ animais.descricao|truncatechars:50 }}...</p>
+                        <p class="card-text"><small class="text-muted">Criado em por {{ animais.CorAnimal }}</small></p>
+                        <a href="{% url 'home:listar-animal' animais.slug %}" class="btn btn-primary">Ver o post completo</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {% endfor %}
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if animais.has_previous %}
+                    <a href="?page={{ animais.previous_page_number }}">Anterior</a>
+                {% endif %}
+            
+                <span class="current">
+                    {{ animais.number }} de {{ animais.paginator.num_pages }}
+                </span>
+            
+                {% if animais.has_next %}
+                    <a href="?page={{ animais.next_page_number }}">Próxima</a>
+                {% endif %}
+            </span>
+        </div>
+    </div> 
+{% endblock %}

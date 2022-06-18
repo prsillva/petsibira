@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load bootstrap %}
+{% block title %}Crie sua conta{% endblock %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid" style= "margin-bottom: 0px; ">
+  <div class="container" >
+    <center><h1 class="display-4">Gostaria de ser um de nossos voluntários?</h1></center>
+      <center><div class="col-lg-9 text-center text-lg-left">
+      <center><h4>A nossa Ong necessita muito de você.</h4></center>
+      <center><p><span>Tem um tempinho sobrando</span> e gostaria de ajudar uma de nossos animais?!</p>
+      <p> Você pode nos ajudar cuidando de uma de nossos animais, ajudando em nossas feiras, sendo um de nossos veterinários, enfim você pode nos ajudar de váras formas.</p>
+      <p>Preencha o formulário abaixo, que entraremos em contato para ver a melhor forma de nos ajudar.</p>
+    </div></center>
+  </div>
+</div>
+
+<div class=" border text-center padding-bottom:0px" style="background-color: #8293b5 ; padding: 2px; border-top: 0px; margin-top: 0px;"> <h1>Preencha o Formulário</h1>
+
+</div>
+
+  <div class="container border" style="margin-top:5px ;margin-bottom: 20px;">
+    <div class="container form-group col-md-12 mb-0">
+        
+        <form action="." method="post">
+            {% csrf_token %}
+            {{form|bootstrap }}
+            <center><input class="btn btn-primary" type="submit" value="Cadastrar"></center>
+        </form>
+    </div>
+  </div>
+
+{% endblock %}

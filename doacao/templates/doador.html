@@ -1,0 +1,74 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load bootstrap %}
+{% block title %}Crie sua conta{% endblock %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid" style= "margin-bottom: 0px; ">
+    <div class="container">
+      <center><h1 class="display-4">Como Ajudar</h1></center>
+        <center><div class="col-lg-9 text-center text-lg-left">
+        <center><h4>A nossa Ong necessita muito de você.</h4></center>
+        <center><p><span>São mais de 100 animais, que passam pelo nosso abrigo</span> só este ano!</p>
+        <p> Se você pode ajudar com vacinas, alimentos, etc., preencha o formulário informe os seus dados, indique como buscarmos, que os nossos animais ficarão muito felizes com a sua ajuda.</p>
+      </div></center>
+    </div>
+  </div>
+  
+  <div class=" border text-center padding-bottom:0px" style="background-color: #8293b5 ; padding: 2px; border-top: 0px; margin-top: 0px;"> <h1>Preencha o Formulário</h1>
+  
+</div>
+
+    <div class="container border" style="margin-top:5px ;margin-bottom: 20px;">
+
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="form-row" style="margin-top:10px ; ">
+              <div class="form-group col-md-8 mb-0">
+            {{ form.NomeDoador|bootstrap }}
+             </div>
+             <div class="form-group col-md-4 mb-0">
+              {{ form.TelefoneDoador|bootstrap }}
+               </div>          
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4 mb-0">
+                {{ form.EmailDoador|bootstrap }}
+                 </div>
+                 <div class="form-group col-md-4 mb-0">
+                  {{ form.TipoDoacao|bootstrap }}
+                 </div>    
+                 <div class="form-group col-md-4 mb-0">
+                  {{ form.QtdDoacao|bootstrap }}
+                 </div>      
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4 mb-0">
+                {{ form.CepDoador|bootstrap }}
+                 </div>
+                 <div class="form-group col-md-4 mb-0">
+                  {{ form.RuaDoador|bootstrap }}
+                 </div>    
+                 <div class="form-group col-md-4 mb-0">
+                  {{ form.NumeroCasaDoador|bootstrap }}
+                 </div>      
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4 mb-0 ">
+                {{ form.BairroDoador|bootstrap }}
+                 </div>
+                 <div class="form-group col-md-4 mb-0">
+                  {{ form.CidadeDoador|bootstrap }}
+                 </div>    
+                 <div class="form-group col-md-4 mb-0">
+                  {{ form.EstadoDoador|bootstrap }}
+                 </div>      
+            </div>
+            {{ form.Observacao|bootstrap }}
+            <center>
+            <input class="btn btn-primary" type="submit" value="Enviar"></center>
+          
+        </form>
+    </div>
+
+<script src="{% static 'js/cep.js' %}"></script>
+{% endblock %}

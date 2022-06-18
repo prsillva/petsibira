@@ -1,0 +1,22 @@
+{% extends 'painel-adm.html' %}
+{% load bootstrap %}
+{% load crispy_forms_tags %}
+{% block title %}Editar '{{animal.NomeAnimal}}'{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Editar '{{animal.NomeAnimal}}'</h1>
+        <div>
+            <form action="." method="POST">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                <input type="submit" class="btn btn-default" value="Editar">
+            </form>
+        </div>
+        <hr>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value='Deletar post'>
+        </form>
+    </div>
+{% endblock %}

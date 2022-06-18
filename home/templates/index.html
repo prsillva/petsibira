@@ -1,0 +1,147 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}Pets Ibirá{% endblock %}
+{% block content %}
+ <!-- ======= Hero Section ======= -->
+ <style>
+   /*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+  width: 100%;
+  height: 60vh;
+  background: url("{% static 'img/hero-bg1.jpg' %}") top center;
+  background-size: cover;
+  margin-bottom: -200px;
+}
+#hero .container {
+  position: relative;
+}
+#hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  text-transform: uppercase;
+  color: #2c4964;
+}
+#hero h2 {
+  color: #2c4964;
+  margin: 10px 0 0 0;
+  font-size: 24px;
+}
+#hero .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 35px;
+  margin-top: 30px;
+  border-radius: 50px;
+  transition: 0.5s;
+  color: #fff;
+  background: #1977cc;
+}
+#hero .btn-get-started:hover {
+  background: #3291e6;
+}
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
+@media (max-width: 992px) {
+  #hero {
+    margin-bottom: 0;
+    height: 100vh;
+  }
+  #hero .container {
+    padding-bottom: 63px;
+  }
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+@media (max-height: 600px) {
+  #hero {
+    height: 110vh;
+  }
+}
+
+ </style>
+ <section id="hero" class="d-flex align-items-left">
+    <div class="container">
+      <h1>Adote um Animal</h1>
+      <h2>Apaixone-se por um pet e venha nos visitar<br> adote um de nossos animais.</h2>
+      <a href="/animais/" class="btn-get-started scrollto">Adote</a>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4 d-flex align-items-stretch">
+            <div class="content">
+              <h3>Por que adotar uma Animal?</h3>
+              <p>
+                Vários estudos já mostraram o bem que um pet faz à saúde das pessoas. Além disso, ter um animalzinho em casa resulta em passeios que estimulam os exercícios, melhoram a pressão sanguínea e evita que o dono apresente indícios de depressão, ansiedade ou estresse
+              </p>
+              <div class="text-center">
+                <a href="#" class="more-btn">Saiba mais <i class="bx bx-chevron-right"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="icon-boxes d-flex flex-column justify-content-center">
+              <div class="row">
+                {% for animais in animais %}
+                
+                <div class="col-xl-4 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <a href="animais/detalhes/{{ animais.id }}">
+                    <i><img src="{{ animais.FotoCapaAnimal.url }}?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class= "img-responsive img-thumbnail" style="width:150px ; height: 100px;"/></a></i>
+                    <h4>{{animais.NomeAnimal}}</h4>
+                    <p>{{ animais.Observacao|truncatewords:9 }}</p>
+                  </div>
+                </div>
+                {% endfor %}
+                
+              </div>
+            </div><!-- End .content-->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+    <div class="b-example-divider"></div>
+    <div class="container my-5">
+      <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+          <h1 class="display-4 fw-bold lh-1">Sua doação pode ajudar muitos animais</h1>
+          <p class="lead">Por sermos uma ong e não termos um fonte para gerar lucro, precisamos sempre da ajuda de vocês, acesse nossa página de doação e nos ajude.</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+            <a href="/doacao/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Doe</a>
+            
+          </div>
+        </div>
+        <div class="col-lg-3 offset-lg-1 p-0 overflow-hidden shadow-lg">
+            <img class="rounded-lg-3" src="{% static '/img/pg-index.jpg' %}" alt="" width="720">
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+

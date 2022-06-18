@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+{% load bootstrap %}
+{% load crispy_forms_tags %}
+{% block title %}Formulário de Adoção de Animais{% endblock %}
+
+{% block content %}
+<input type="number" class="form-control" name="animal_id" value="{{ animais.id }}" hidden>
+    <div class="container">
+        <h1>Formulário de Adoção de Animais</h1>
+        <div>
+            <form action="." method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                {{ form.NomeAnimal|as_crispy_field}}
+                <input type="submit" class="btn btn-default" value="Criar">
+            </form>
+            
+        </div>
+    </div>
+{% endblock %}

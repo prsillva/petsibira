@@ -1,0 +1,47 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{%block content %}
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+              <h1 class="page-header">
+                    Dúvidas
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a>
+                    </li>
+                    
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+            <div class="m-4">
+            <div class="accordion" id="myAccordion">
+            {% if lista_duvidas %}
+
+            {% for duvidas in lista_duvidas %}
+           
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-{{ duvidas.pk }}">
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapse-{{ duvidas.pk }}">{{ duvidas.pergunta }}</button>									
+                        </h2>
+                        <div id="collapse-{{ duvidas.pk }}" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
+                            <div class="card-body">
+                               <p> {{ duvidas.texto_pergunta }} </p>
+                            </div>
+                        </div>
+                    </div>
+                               {% endfor %}
+                    {% endif %}  
+                </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+        {% endblock %}

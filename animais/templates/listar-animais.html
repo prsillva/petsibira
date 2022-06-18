@@ -1,0 +1,172 @@
+{% extends 'blog/base.html' %}
+{% block title %}Animais para adoção{% endblock %}
+
+{% block content %}
+{% load widget_tweaks %}
+<style>
+     /*  Helper Styles */
+
+
+    /* Card Styles */
+
+    .card-sl {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .card-image img {
+        max-height: 100%;
+        max-width: 100%;
+        border-radius: 8px 8px 0px 0;
+    }
+
+    .card-action {
+
+        margin-top: -25px;
+        margin-right: 20px;
+        z-index: 2;
+        color: #E26D5C;
+        background: #fff;
+        border-radius: 100%;
+        padding: 15px;
+        font-size: 15px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .card-action:hover {
+        color: #fff;
+        background: #E26D5C;
+        -webkit-animation: pulse 1.5s infinite;
+    }
+
+    .card-heading {
+        font-size: 18px;
+        font-weight: bold;
+        background: #fff;
+        padding: 10px 15px;
+    }
+
+    .card-text {
+        padding: 10px 15px;
+        background: #fff;
+        font-size: 14px;
+        color: #636262;
+    }
+
+    .card-button {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        width: 100%;
+        background-color: #1F487E;
+        color: #fff;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .card-button:hover {
+        text-decoration: none;
+        background-color: #1D3461;
+        color: #fff;
+
+    }
+
+
+    @-webkit-keyframes pulse {
+        0% {
+            -moz-transform: scale(0.9);
+            -ms-transform: scale(0.9);
+            -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+        }
+
+        70% {
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+        }
+
+        100% {
+            -moz-transform: scale(0.9);
+            -ms-transform: scale(0.9);
+            -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+            box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+        }
+    }
+</style>
+
+ 
+<div class="jumbotron jumbotron-fluid align-items-center">
+    <div class="container">
+      <h1 class="display-4 ">Animais para adoção</h1>
+      <p class="lead">Aqui você vai encontra todos nossos animais disponíveis para adoção</p>
+      <p> Gostou de algum, tem interesse em adotar? Clique no botão "Adotar" e preencha o formulário de intenção de adoção.</p>
+      <p>Clique sobre a foto para maiores detlhes do animal.</p>
+    </div>
+  </div>
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Animais para adoção
+            
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a>
+            </li>
+            
+            
+        </ol>
+    </div>
+</div>
+    <div class="container">
+
+        <div class="row">
+            
+                     {% for list_animais in animais %}
+                        
+                                    <div class="col-md-4">
+                                        <div class="card-sl">
+                                            <div class="card-image max-height=80">
+                                                <a href="detalhes/{{ list_animais.id }}">
+                                                <img src="{{ list_animais.FotoCapaAnimal.url }}?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class= "img-responsive" width="304" height="250"/></a>
+                                            </div>
+                                            <div class="card-heading">
+                                                {{ list_animais.NomeAnimal}}
+                                            </div>
+                                            <div class="card-text ">
+                                                {{ list_animais.Observacao }}
+                                            </div>
+
+                                            <a href="detalhes/{{ list_animais.id }}" class="card-button"> Detalhes</a>
+                                            
+                                        </div>
+                                    </div>
+                       
+
+                {% endfor %}
+            
+        </div>
+        
+        <div class="pagination mx-auto p-5 h-100 justify-content-center align-items-center ">
+            <span class="step-links">
+                {% if animais.has_previous %}
+                    <a href="?page={{ animais.previous_page_number }}">Anterior</a>
+                {% endif %}
+            
+                <span class="current">
+                    {{ animais.number }} de {{ animais.paginator.num_pages }}
+                </span>
+            
+                {% if animais.has_next %}
+                    <a href="?page={{ animais.next_page_number }}">Próxima</a>
+                {% endif %}
+            </span>
+        </div>
+     
+</div>
+</div>
+
+
+{% endblock %}
